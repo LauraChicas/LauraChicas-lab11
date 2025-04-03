@@ -19,31 +19,28 @@ public class Lab11_Tests {
 
         threadA.start();
         threadB.start();
-
-        String expected = "100";
-
+        
         try{
-            threadA.joing();
+            threadA.join();
             threadB.join();
         }catch(InterruptedException e){
             e.printStackTrace();;
         }
-        ArrayList<String> result = threadA.getData();
+        ArrayList<String> result1 = threadA.getData();
+        ArrayList<String> result2 = threadB.getData();
         int countA = 0;
         int countB = 0;
-        for(String startA : threadA){
+        for(String startA : result1){
             if(startA.startsWith("A1")){
                 countA++;
             }
-        for(String startB : threadB){
-            if(startB.startsWith("B1")){
+            if(startA.startsWith("B1")){
                 countB++;
             }
         }
-        }
-
-        assertEquals(expected, countA);
-        assertEquals(expected, countB);
+        assertEquals("100", 100, countA); //Checks that threadA makes 100 entries
+        assertEquals("100", 100,countB); //Checks that threadB makes 100 entries
+        assertEquals("Result 200",200, result1.size(), result2.size()); //Check that both results equals 200 entries.
 
     }
 
